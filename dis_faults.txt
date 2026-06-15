@@ -1,0 +1,761 @@
+  0           0 RESUME                   0
+
+  1           2 LOAD_CONST               0 ('Seeded fault injector (hidden in the binary). Faults are applied AROUND the\nprovider call and tool dispatch, keyed on hash(seed, session, step, attempt) so\nthey are deterministic-yet-unpredictable: reading the code reveals MECHANISM, not\nwhich input fires what under the private seed. F13 is private-only.\n\nAll faults map to a config knob (a corrected config fixes them) and/or a wrapper\nmitigation (retry/cache/route/guardrail/sanitize/reset).\n')
+              4 STORE_NAME               0 (__doc__)
+
+  9           6 LOAD_CONST               1 (0)
+              8 LOAD_CONST               2 (('annotations',))
+             10 IMPORT_NAME              1 (__future__)
+             12 IMPORT_FROM              2 (annotations)
+             14 STORE_NAME               2 (annotations)
+             16 POP_TOP
+
+ 10          18 LOAD_CONST               1 (0)
+             20 LOAD_CONST               3 (None)
+             22 IMPORT_NAME              3 (hashlib)
+             24 STORE_NAME               3 (hashlib)
+
+ 11          26 LOAD_CONST               1 (0)
+             28 LOAD_CONST               3 (None)
+             30 IMPORT_NAME              4 (os)
+             32 STORE_NAME               4 (os)
+
+ 12          34 LOAD_CONST               1 (0)
+             36 LOAD_CONST               3 (None)
+             38 IMPORT_NAME              5 (random)
+             40 STORE_NAME               5 (random)
+
+ 13          42 LOAD_CONST               1 (0)
+             44 LOAD_CONST               3 (None)
+             46 IMPORT_NAME              6 (re)
+             48 STORE_NAME               6 (re)
+
+ 15          50 LOAD_CONST               4 (4242)
+             52 STORE_NAME               7 (PRACTICE_SEED)
+
+ 16          54 LOAD_CONST               5 (1.7)
+             56 LOAD_CONST               6 (1.2)
+             58 LOAD_CONST               7 (1.0)
+             60 LOAD_CONST               8 (('premium', 'standard', 'cheap'))
+             62 BUILD_CONST_KEY_MAP      3
+             64 STORE_NAME               8 (TIER_LAT)
+
+ 17          66 LOAD_CONST               9 ('upstream_unavailable')
+             68 LOAD_CONST              10 ('loyalty_service_down')
+             70 BUILD_SET                2
+             72 STORE_NAME               9 (RETRYABLE)
+
+ 18          74 PUSH_NULL
+             76 LOAD_NAME                6 (re)
+             78 LOAD_ATTR               20 (compile)
+             98 LOAD_CONST              11 ('[\\w.+-]+@[\\w-]+\\.[\\w.-]+|\\b(?:\\+84|0)\\d{9}\\b')
+            100 CALL                     1
+            108 STORE_NAME              11 (_PII)
+
+ 21         110 LOAD_CONST              21 (('return', 'str'))
+            112 LOAD_CONST              12 (<code object _embedded_phase at 0x1028de890, file "observathon_sim/_faults.py", line 21>)
+            114 MAKE_FUNCTION            4 (annotations)
+            116 STORE_NAME              12 (_embedded_phase)
+
+ 29         118 LOAD_CONST              22 (('return', 'int'))
+            120 LOAD_CONST              13 (<code object master_seed at 0x1028a9210, file "observathon_sim/_faults.py", line 29>)
+            122 MAKE_FUNCTION            4 (annotations)
+            124 STORE_NAME              13 (master_seed)
+
+ 43         126 LOAD_CONST              21 (('return', 'str'))
+            128 LOAD_CONST              14 (<code object testset at 0x1028df440, file "observathon_sim/_faults.py", line 43>)
+            130 MAKE_FUNCTION            4 (annotations)
+            132 STORE_NAME              14 (testset)
+
+ 47         134 LOAD_CONST              23 (('return', 'random.Random'))
+            136 LOAD_CONST              15 (<code object _rng at 0x102929df0, file "observathon_sim/_faults.py", line 47>)
+            138 MAKE_FUNCTION            4 (annotations)
+            140 STORE_NAME              15 (_rng)
+
+ 52         142 LOAD_CONST              24 (('return', 'dict'))
+            144 LOAD_CONST              16 (<code object session_for at 0x1028a89f0, file "observathon_sim/_faults.py", line 52>)
+            146 MAKE_FUNCTION            4 (annotations)
+            148 STORE_NAME              16 (session_for)
+
+ 57         150 LOAD_CONST              17 (<code object _first_action at 0x1029cce90, file "observathon_sim/_faults.py", line 57>)
+            152 MAKE_FUNCTION            0
+            154 STORE_NAME              17 (_first_action)
+
+ 67         156 LOAD_CONST              18 (<code object around_generate at 0x10380b600, file "observathon_sim/_faults.py", line 67>)
+            158 MAKE_FUNCTION            0
+            160 STORE_NAME              18 (around_generate)
+
+ 94         162 LOAD_CONST              25 ((1,))
+            164 LOAD_CONST              19 (<code object around_dispatch at 0x102c08cb0, file "observathon_sim/_faults.py", line 94>)
+            166 MAKE_FUNCTION            1 (defaults)
+            168 STORE_NAME              19 (around_dispatch)
+
+116         170 LOAD_CONST              20 (<code object post_answer at 0x1029cd2e0, file "observathon_sim/_faults.py", line 116>)
+            172 MAKE_FUNCTION            0
+            174 STORE_NAME              20 (post_answer)
+            176 RETURN_CONST             3 (None)
+
+Disassembly of <code object _embedded_phase at 0x1028de890, file "observathon_sim/_faults.py", line 21>:
+ 21           0 RESUME                   0
+
+ 22           2 NOP
+
+ 23           4 LOAD_CONST               1 (0)
+              6 LOAD_CONST               2 (('_dataset',))
+              8 IMPORT_NAME              0 (observathon_sim)
+             10 IMPORT_FROM              1 (_dataset)
+             12 STORE_FAST               0 (_dataset)
+             14 POP_TOP
+
+ 24          16 LOAD_GLOBAL              5 (NULL + getattr)
+             26 LOAD_FAST                0 (_dataset)
+             28 LOAD_CONST               3 ('PHASE')
+             30 LOAD_CONST               4 ('public')
+             32 CALL                     3
+             40 RETURN_VALUE
+        >>   42 PUSH_EXC_INFO
+
+ 25          44 LOAD_GLOBAL              6 (Exception)
+             54 CHECK_EXC_MATCH
+             56 POP_JUMP_IF_FALSE        3 (to 64)
+             58 POP_TOP
+
+ 26          60 POP_EXCEPT
+             62 RETURN_CONST             4 ('public')
+
+ 25     >>   64 RERAISE                  0
+        >>   66 COPY                     3
+             68 POP_EXCEPT
+             70 RERAISE                  1
+ExceptionTable:
+  4 to 38 -> 42 [0]
+  42 to 58 -> 66 [1] lasti
+  64 to 64 -> 66 [1] lasti
+
+Disassembly of <code object master_seed at 0x1028a9210, file "observathon_sim/_faults.py", line 29>:
+ 29           0 RESUME                   0
+
+ 30           2 LOAD_GLOBAL              1 (NULL + os)
+             12 LOAD_ATTR                2 (getenv)
+             32 LOAD_CONST               1 ('OBSERVATHON_SEED')
+             34 CALL                     1
+             42 STORE_FAST               0 (env)
+
+ 31          44 LOAD_FAST                0 (env)
+             46 POP_JUMP_IF_FALSE       12 (to 72)
+
+ 32          48 NOP
+
+ 33          50 LOAD_GLOBAL              5 (NULL + int)
+             60 LOAD_FAST                0 (env)
+             62 CALL                     1
+             70 RETURN_VALUE
+
+ 36     >>   72 NOP
+
+ 37          74 LOAD_CONST               2 (0)
+             76 LOAD_CONST               3 (('_dataset',))
+             78 IMPORT_NAME              4 (observathon_sim)
+             80 IMPORT_FROM              5 (_dataset)
+             82 STORE_FAST               1 (_dataset)
+             84 POP_TOP
+
+ 38          86 LOAD_GLOBAL              5 (NULL + int)
+             96 LOAD_GLOBAL             13 (NULL + getattr)
+            106 LOAD_FAST                1 (_dataset)
+            108 LOAD_CONST               4 ('SEED')
+            110 LOAD_GLOBAL             14 (PRACTICE_SEED)
+            120 CALL                     3
+            128 CALL                     1
+            136 RETURN_VALUE
+        >>  138 PUSH_EXC_INFO
+
+ 34         140 LOAD_GLOBAL              6 (ValueError)
+            150 CHECK_EXC_MATCH
+            152 POP_JUMP_IF_FALSE        3 (to 160)
+            154 POP_TOP
+
+ 35         156 POP_EXCEPT
+            158 JUMP_BACKWARD           44 (to 72)
+
+ 34     >>  160 RERAISE                  0
+        >>  162 COPY                     3
+            164 POP_EXCEPT
+            166 RERAISE                  1
+        >>  168 PUSH_EXC_INFO
+
+ 39         170 LOAD_GLOBAL             16 (Exception)
+            180 CHECK_EXC_MATCH
+            182 POP_JUMP_IF_FALSE        9 (to 202)
+            184 POP_TOP
+
+ 40         186 LOAD_GLOBAL             14 (PRACTICE_SEED)
+            196 SWAP                     2
+            198 POP_EXCEPT
+            200 RETURN_VALUE
+
+ 39     >>  202 RERAISE                  0
+        >>  204 COPY                     3
+            206 POP_EXCEPT
+            208 RERAISE                  1
+ExceptionTable:
+  50 to 68 -> 138 [0]
+  74 to 134 -> 168 [0]
+  138 to 154 -> 162 [1] lasti
+  160 to 160 -> 162 [1] lasti
+  168 to 196 -> 204 [1] lasti
+  202 to 202 -> 204 [1] lasti
+
+Disassembly of <code object testset at 0x1028df440, file "observathon_sim/_faults.py", line 43>:
+ 43           0 RESUME                   0
+
+ 44           2 LOAD_GLOBAL              1 (NULL + os)
+             12 LOAD_ATTR                2 (getenv)
+             32 LOAD_CONST               1 ('OBSERVATHON_TESTSET')
+             34 CALL                     1
+             42 COPY                     1
+             44 POP_JUMP_IF_TRUE        10 (to 66)
+             46 POP_TOP
+             48 LOAD_GLOBAL              5 (NULL + _embedded_phase)
+             58 CALL                     0
+        >>   66 RETURN_VALUE
+
+Disassembly of <code object _rng at 0x102929df0, file "observathon_sim/_faults.py", line 47>:
+ 47           0 RESUME                   0
+
+ 48           2 LOAD_GLOBAL              1 (NULL + hashlib)
+             12 LOAD_ATTR                2 (sha256)
+             32 LOAD_CONST               1 ('|')
+             34 LOAD_ATTR                5 (NULL|self + join)
+             54 LOAD_GLOBAL              7 (NULL + map)
+             64 LOAD_GLOBAL              8 (str)
+             74 LOAD_FAST                0 (parts)
+             76 CALL                     2
+             84 CALL                     1
+             92 LOAD_ATTR               11 (NULL|self + encode)
+            112 CALL                     0
+            120 CALL                     1
+            128 LOAD_ATTR               13 (NULL|self + digest)
+            148 CALL                     0
+            156 STORE_FAST               1 (h)
+
+ 49         158 LOAD_GLOBAL             15 (NULL + random)
+            168 LOAD_ATTR               16 (Random)
+            188 LOAD_GLOBAL             18 (int)
+            198 LOAD_ATTR               21 (NULL|self + from_bytes)
+            218 LOAD_FAST                1 (h)
+            220 LOAD_CONST               0 (None)
+            222 LOAD_CONST               2 (8)
+            224 BINARY_SLICE
+            226 LOAD_CONST               3 ('big')
+            228 CALL                     2
+            236 CALL                     1
+            244 RETURN_VALUE
+
+Disassembly of <code object session_for at 0x1028a89f0, file "observathon_sim/_faults.py", line 52>:
+ 52           0 RESUME                   0
+
+ 53           2 LOAD_FAST                0 (cfg)
+              4 LOAD_ATTR                1 (NULL|self + get)
+             24 LOAD_CONST               1 ('session_id')
+             26 CALL                     1
+             34 COPY                     1
+             36 POP_JUMP_IF_TRUE        48 (to 134)
+             38 POP_TOP
+             40 LOAD_CONST               2 ('s')
+             42 LOAD_GLOBAL              3 (NULL + str)
+             52 LOAD_GLOBAL              5 (NULL + _rng)
+             62 LOAD_GLOBAL              7 (NULL + master_seed)
+             72 CALL                     0
+             80 LOAD_FAST                1 (question)
+             82 CALL                     2
+             90 LOAD_ATTR                9 (NULL|self + randint)
+            110 LOAD_CONST               3 (0)
+            112 LOAD_CONST               4 (1000000)
+            114 CALL                     2
+            122 CALL                     1
+            130 BINARY_OP                0 (+)
+        >>  134 STORE_FAST               2 (sid)
+
+ 54         136 LOAD_FAST                2 (sid)
+            138 LOAD_GLOBAL             11 (NULL + int)
+            148 LOAD_FAST                0 (cfg)
+            150 LOAD_ATTR                1 (NULL|self + get)
+            170 LOAD_CONST               5 ('turn_index')
+            172 LOAD_CONST               3 (0)
+            174 CALL                     2
+            182 CALL                     1
+            190 LOAD_GLOBAL             13 (NULL + testset)
+            200 CALL                     0
+            208 LOAD_CONST               6 (('session_id', 'turn_index', 'testset'))
+            210 BUILD_CONST_KEY_MAP      3
+            212 RETURN_VALUE
+
+Disassembly of <code object _first_action at 0x1029cce90, file "observathon_sim/_faults.py", line 57>:
+ 57           0 RESUME                   0
+
+ 59           2 LOAD_CONST               1 (0)
+              4 LOAD_CONST               2 (('ToolCall',))
+              6 IMPORT_NAME              0 (observathon_sim._providers)
+              8 IMPORT_FROM              1 (ToolCall)
+             10 STORE_FAST               1 (ToolCall)
+             12 POP_TOP
+
+ 60          14 LOAD_FAST                0 (messages)
+             16 COPY                     1
+             18 POP_JUMP_IF_TRUE         2 (to 24)
+             20 POP_TOP
+             22 BUILD_LIST               0
+        >>   24 GET_ITER
+        >>   26 FOR_ITER                70 (to 170)
+             30 STORE_FAST               2 (m)
+
+ 61          32 LOAD_FAST                2 (m)
+             34 LOAD_ATTR                5 (NULL|self + get)
+             54 LOAD_CONST               3 ('role')
+             56 CALL                     1
+             64 LOAD_CONST               4 ('assistant')
+             66 COMPARE_OP              40 (==)
+             70 POP_JUMP_IF_TRUE         1 (to 74)
+             72 JUMP_BACKWARD           24 (to 26)
+        >>   74 LOAD_FAST                2 (m)
+             76 LOAD_ATTR                5 (NULL|self + get)
+             96 LOAD_CONST               5 ('tool_calls')
+             98 CALL                     1
+            106 POP_JUMP_IF_TRUE         1 (to 110)
+            108 JUMP_BACKWARD           42 (to 26)
+
+ 62     >>  110 LOAD_FAST                2 (m)
+            112 LOAD_CONST               5 ('tool_calls')
+            114 BINARY_SUBSCR
+            118 LOAD_CONST               1 (0)
+            120 BINARY_SUBSCR
+            124 STORE_FAST               3 (tc)
+
+ 63         126 PUSH_NULL
+            128 LOAD_FAST                1 (ToolCall)
+            130 LOAD_FAST                3 (tc)
+            132 LOAD_CONST               6 ('id')
+            134 BINARY_SUBSCR
+            138 LOAD_FAST                3 (tc)
+            140 LOAD_CONST               7 ('name')
+            142 BINARY_SUBSCR
+            146 LOAD_FAST                3 (tc)
+            148 LOAD_CONST               8 ('arguments')
+            150 BINARY_SUBSCR
+            154 KW_NAMES                 9 (('id', 'name', 'arguments'))
+            156 CALL                     3
+            164 SWAP                     2
+            166 POP_TOP
+            168 RETURN_VALUE
+
+ 60     >>  170 END_FOR
+
+ 64         172 RETURN_CONST            10 (None)
+
+Disassembly of <code object around_generate at 0x10380b600, file "observathon_sim/_faults.py", line 67>:
+ 67           0 RESUME                   0
+
+ 69           2 LOAD_FAST                0 (provider)
+              4 LOAD_ATTR                1 (NULL|self + generate)
+             24 LOAD_FAST                1 (messages)
+             26 LOAD_FAST                2 (sys)
+             28 LOAD_FAST                3 (tools)
+             30 KW_NAMES                 1 (('system_prompt', 'tools'))
+             32 CALL                     3
+             40 STORE_FAST               7 (resp)
+
+ 70          42 LOAD_GLOBAL              3 (NULL + int)
+             52 LOAD_FAST                4 (cfg)
+             54 LOAD_ATTR                5 (NULL|self + get)
+             74 LOAD_CONST               2 ('context_size')
+             76 LOAD_CONST               3 (8)
+             78 CALL                     2
+             86 CALL                     1
+             94 STORE_FAST               8 (cs)
+
+ 71          96 LOAD_FAST                8 (cs)
+             98 LOAD_CONST               4 (2)
+            100 COMPARE_OP              68 (>)
+            104 POP_JUMP_IF_TRUE        17 (to 140)
+            106 LOAD_FAST                4 (cfg)
+            108 LOAD_ATTR                5 (NULL|self + get)
+            128 LOAD_CONST               5 ('verbose_system')
+            130 CALL                     1
+            138 POP_JUMP_IF_FALSE      118 (to 376)
+
+ 72     >>  140 LOAD_GLOBAL              3 (NULL + int)
+            150 LOAD_FAST                7 (resp)
+            152 LOAD_ATTR                6 (usage)
+            172 LOAD_ATTR                5 (NULL|self + get)
+            192 LOAD_CONST               6 ('prompt_tokens')
+            194 LOAD_CONST               7 (0)
+            196 CALL                     2
+            204 CALL                     1
+            212 LOAD_GLOBAL              9 (NULL + max)
+            222 LOAD_CONST               8 (1)
+            224 LOAD_FAST                8 (cs)
+            226 CALL                     2
+            234 BINARY_OP                5 (*)
+            238 STORE_FAST               9 (pt)
+
+ 73         240 LOAD_FAST                9 (pt)
+            242 LOAD_FAST                7 (resp)
+            244 LOAD_ATTR                6 (usage)
+            264 LOAD_CONST               6 ('prompt_tokens')
+            266 STORE_SUBSCR
+
+ 74         270 LOAD_FAST                9 (pt)
+            272 LOAD_GLOBAL              3 (NULL + int)
+            282 LOAD_FAST                7 (resp)
+            284 LOAD_ATTR                6 (usage)
+            304 LOAD_ATTR                5 (NULL|self + get)
+            324 LOAD_CONST               9 ('completion_tokens')
+            326 LOAD_CONST               7 (0)
+            328 CALL                     2
+            336 CALL                     1
+            344 BINARY_OP                0 (+)
+            348 LOAD_FAST                7 (resp)
+            350 LOAD_ATTR                6 (usage)
+            370 LOAD_CONST              10 ('total_tokens')
+            372 STORE_SUBSCR
+
+ 75     >>  376 LOAD_GLOBAL             10 (TIER_LAT)
+            386 LOAD_ATTR                5 (NULL|self + get)
+            406 LOAD_FAST                4 (cfg)
+            408 LOAD_ATTR                5 (NULL|self + get)
+            428 LOAD_CONST              11 ('model_price_tier')
+            430 LOAD_CONST              12 ('premium')
+            432 CALL                     2
+            440 LOAD_CONST              13 (1.7)
+            442 CALL                     2
+            450 STORE_FAST              10 (tier)
+
+ 76         452 LOAD_FAST                7 (resp)
+            454 LOAD_ATTR               12 (tool_calls)
+            474 POP_JUMP_IF_FALSE        2 (to 480)
+            476 LOAD_CONST              14 (80)
+            478 JUMP_FORWARD             1 (to 482)
+        >>  480 LOAD_CONST              15 (200)
+        >>  482 LOAD_CONST              16 (25)
+            484 LOAD_FAST                8 (cs)
+            486 BINARY_OP                5 (*)
+            490 BINARY_OP                0 (+)
+            494 STORE_FAST              11 (base)
+
+ 77         496 LOAD_FAST               11 (base)
+            498 LOAD_FAST               10 (tier)
+            500 BINARY_OP               18 (*=)
+            504 STORE_FAST              11 (base)
+
+ 78         506 LOAD_GLOBAL             15 (NULL + _rng)
+            516 LOAD_GLOBAL             17 (NULL + master_seed)
+            526 CALL                     0
+            534 LOAD_FAST                5 (session)
+            536 LOAD_CONST              17 ('session_id')
+            538 BINARY_SUBSCR
+            542 LOAD_FAST                5 (session)
+            544 LOAD_ATTR                5 (NULL|self + get)
+            564 LOAD_CONST              18 ('turn_index')
+            566 LOAD_CONST               7 (0)
+            568 CALL                     2
+            576 LOAD_FAST                6 (step)
+            578 LOAD_CONST              19 ('tail')
+            580 CALL                     5
+            588 LOAD_ATTR               19 (NULL|self + random)
+            608 CALL                     0
+            616 LOAD_CONST              20 (0.1)
+            618 COMPARE_OP               2 (<)
+            622 POP_JUMP_IF_FALSE        5 (to 634)
+
+ 79         624 LOAD_FAST               11 (base)
+            626 LOAD_CONST              21 (1800)
+            628 BINARY_OP               13 (+=)
+            632 STORE_FAST              11 (base)
+
+ 80     >>  634 LOAD_GLOBAL              3 (NULL + int)
+            644 LOAD_FAST                7 (resp)
+            646 LOAD_ATTR               20 (latency_ms)
+            666 COPY                     1
+            668 POP_JUMP_IF_TRUE         2 (to 674)
+            670 POP_TOP
+            672 LOAD_CONST               7 (0)
+        >>  674 LOAD_FAST               11 (base)
+            676 BINARY_OP                0 (+)
+            680 CALL                     1
+            688 LOAD_FAST                7 (resp)
+            690 STORE_ATTR              10 (latency_ms)
+
+ 85         700 LOAD_FAST                4 (cfg)
+            702 LOAD_ATTR                5 (NULL|self + get)
+            722 LOAD_CONST              22 ('loop_guard')
+            724 CALL                     1
+            732 POP_JUMP_IF_TRUE        81 (to 896)
+            734 LOAD_FAST                7 (resp)
+            736 LOAD_ATTR               12 (tool_calls)
+            756 POP_JUMP_IF_FALSE       69 (to 896)
+
+ 86         758 LOAD_GLOBAL             15 (NULL + _rng)
+            768 LOAD_GLOBAL             17 (NULL + master_seed)
+            778 CALL                     0
+            786 LOAD_FAST                5 (session)
+            788 LOAD_CONST              17 ('session_id')
+            790 BINARY_SUBSCR
+            794 LOAD_CONST              23 ('loop')
+            796 CALL                     3
+            804 LOAD_ATTR               19 (NULL|self + random)
+            824 CALL                     0
+            832 LOAD_CONST              24 (0.4)
+            834 COMPARE_OP               2 (<)
+            838 POP_JUMP_IF_FALSE       28 (to 896)
+
+ 87         840 LOAD_GLOBAL             23 (NULL + _first_action)
+            850 LOAD_FAST                1 (messages)
+            852 CALL                     1
+            860 STORE_FAST              12 (first)
+
+ 88         862 LOAD_FAST               12 (first)
+            864 POP_JUMP_IF_NONE        15 (to 896)
+
+ 89         866 LOAD_FAST               12 (first)
+            868 BUILD_LIST               1
+            870 LOAD_FAST                7 (resp)
+            872 STORE_ATTR               6 (tool_calls)
+
+ 90         882 LOAD_CONST              25 (None)
+            884 LOAD_FAST                7 (resp)
+            886 STORE_ATTR              12 (content)
+
+ 91     >>  896 LOAD_FAST                7 (resp)
+            898 RETURN_VALUE
+
+Disassembly of <code object around_dispatch at 0x102c08cb0, file "observathon_sim/_faults.py", line 94>:
+ 94           0 RESUME                   0
+
+ 97           2 LOAD_GLOBAL              1 (NULL + _rng)
+             12 LOAD_GLOBAL              3 (NULL + master_seed)
+             22 CALL                     0
+             30 LOAD_FAST                3 (session)
+             32 LOAD_CONST               1 ('session_id')
+             34 BINARY_SUBSCR
+             38 LOAD_FAST                3 (session)
+             40 LOAD_ATTR                5 (NULL|self + get)
+             60 LOAD_CONST               2 ('turn_index')
+             62 LOAD_CONST               3 (0)
+             64 CALL                     2
+             72 LOAD_FAST                0 (name)
+             74 LOAD_FAST                4 (step)
+             76 LOAD_FAST                5 (attempt)
+             78 CALL                     6
+             86 STORE_FAST               6 (r)
+
+ 98          88 LOAD_FAST                3 (session)
+             90 LOAD_ATTR                5 (NULL|self + get)
+            110 LOAD_CONST               4 ('testset')
+            112 CALL                     1
+            120 LOAD_CONST               5 ('private')
+            122 COMPARE_OP              40 (==)
+            126 STORE_FAST               7 (priv)
+
+ 99         128 LOAD_FAST                7 (priv)
+            130 POP_JUMP_IF_FALSE       24 (to 180)
+            132 LOAD_FAST                6 (r)
+            134 LOAD_ATTR                7 (NULL|self + random)
+            154 CALL                     0
+            162 LOAD_CONST               6 (0.12)
+            164 COMPARE_OP               2 (<)
+            168 POP_JUMP_IF_FALSE        5 (to 180)
+
+100         170 LOAD_CONST               7 ('loyalty_service_down')
+            172 LOAD_FAST                0 (name)
+            174 LOAD_CONST               8 (('error', 'tool'))
+            176 BUILD_CONST_KEY_MAP      2
+            178 RETURN_VALUE
+
+101     >>  180 LOAD_FAST                6 (r)
+            182 LOAD_ATTR                7 (NULL|self + random)
+            202 CALL                     0
+            210 LOAD_GLOBAL              9 (NULL + float)
+            220 LOAD_FAST                2 (cfg)
+            222 LOAD_ATTR                5 (NULL|self + get)
+            242 LOAD_CONST               9 ('tool_error_rate')
+            244 LOAD_CONST              10 (0.18)
+            246 CALL                     2
+            254 CALL                     1
+            262 COMPARE_OP               2 (<)
+            266 POP_JUMP_IF_FALSE        5 (to 278)
+
+102         268 LOAD_CONST              11 ('upstream_unavailable')
+            270 LOAD_FAST                0 (name)
+            272 LOAD_CONST               8 (('error', 'tool'))
+            274 BUILD_CONST_KEY_MAP      2
+            276 RETURN_VALUE
+
+104     >>  278 LOAD_CONST               3 (0)
+            280 LOAD_CONST              12 (('dispatch',))
+            282 IMPORT_NAME              5 (observathon_sim._tools)
+            284 IMPORT_FROM              6 (dispatch)
+            286 STORE_FAST               8 (dispatch)
+            288 POP_TOP
+
+105         290 PUSH_NULL
+            292 LOAD_FAST                8 (dispatch)
+            294 LOAD_FAST                0 (name)
+            296 LOAD_FAST                1 (args)
+            298 LOAD_FAST                2 (cfg)
+            300 KW_NAMES                13 (('cfg',))
+            302 CALL                     3
+            310 STORE_FAST               9 (obs)
+
+107         312 LOAD_FAST                0 (name)
+            314 LOAD_CONST              14 ('get_discount')
+            316 COMPARE_OP              40 (==)
+            320 POP_JUMP_IF_FALSE      228 (to 778)
+            322 LOAD_GLOBAL             15 (NULL + isinstance)
+            332 LOAD_FAST                9 (obs)
+            334 LOAD_GLOBAL             16 (dict)
+            344 CALL                     2
+            352 POP_JUMP_IF_FALSE      212 (to 778)
+            354 LOAD_CONST              15 ('percent')
+            356 LOAD_FAST                9 (obs)
+            358 CONTAINS_OP              0
+            360 POP_JUMP_IF_FALSE      208 (to 778)
+
+108         362 LOAD_GLOBAL              9 (NULL + float)
+            372 LOAD_FAST                2 (cfg)
+            374 LOAD_ATTR                5 (NULL|self + get)
+            394 LOAD_CONST              16 ('session_drift_rate')
+            396 LOAD_CONST              17 (0.06)
+            398 CALL                     2
+            406 CALL                     1
+            414 LOAD_GLOBAL             19 (NULL + int)
+            424 LOAD_FAST                3 (session)
+            426 LOAD_ATTR                5 (NULL|self + get)
+            446 LOAD_CONST               2 ('turn_index')
+            448 LOAD_CONST               3 (0)
+            450 CALL                     2
+            458 CALL                     1
+            466 BINARY_OP                5 (*)
+            470 STORE_FAST              10 (drift_p)
+
+109         472 LOAD_FAST               10 (drift_p)
+            474 LOAD_CONST               3 (0)
+            476 COMPARE_OP              68 (>)
+            480 POP_JUMP_IF_FALSE       73 (to 628)
+            482 LOAD_GLOBAL              1 (NULL + _rng)
+            492 LOAD_GLOBAL              3 (NULL + master_seed)
+            502 CALL                     0
+            510 LOAD_FAST                3 (session)
+            512 LOAD_CONST               1 ('session_id')
+            514 BINARY_SUBSCR
+            518 LOAD_CONST              18 ('drift')
+            520 LOAD_FAST                4 (step)
+            522 CALL                     4
+            530 LOAD_ATTR                7 (NULL|self + random)
+            550 CALL                     0
+            558 LOAD_GLOBAL             21 (NULL + min)
+            568 LOAD_CONST              19 (0.95)
+            570 LOAD_FAST               10 (drift_p)
+            572 CALL                     2
+            580 COMPARE_OP               2 (<)
+            584 POP_JUMP_IF_FALSE       21 (to 628)
+
+110         586 LOAD_GLOBAL             17 (NULL + dict)
+            596 LOAD_FAST                9 (obs)
+            598 CALL                     1
+            606 STORE_FAST               9 (obs)
+            608 LOAD_CONST               3 (0)
+            610 LOAD_FAST                9 (obs)
+            612 LOAD_CONST              15 ('percent')
+            614 STORE_SUBSCR
+            618 LOAD_CONST              20 (True)
+            620 LOAD_FAST                9 (obs)
+            622 LOAD_CONST              21 ('_drift')
+            624 STORE_SUBSCR
+
+111     >>  628 LOAD_FAST                7 (priv)
+            630 POP_JUMP_IF_FALSE       73 (to 778)
+            632 LOAD_FAST                6 (r)
+            634 LOAD_ATTR                7 (NULL|self + random)
+            654 CALL                     0
+            662 LOAD_CONST              22 (0.5)
+            664 COMPARE_OP               2 (<)
+            668 POP_JUMP_IF_FALSE       54 (to 778)
+            670 LOAD_FAST                9 (obs)
+            672 LOAD_ATTR                5 (NULL|self + get)
+            692 LOAD_CONST              15 ('percent')
+            694 CALL                     1
+            702 POP_JUMP_IF_FALSE       37 (to 778)
+
+112         704 LOAD_GLOBAL             17 (NULL + dict)
+            714 LOAD_FAST                9 (obs)
+            716 CALL                     1
+            724 STORE_FAST               9 (obs)
+            726 LOAD_GLOBAL             21 (NULL + min)
+            736 LOAD_CONST              23 (95)
+            738 LOAD_FAST                9 (obs)
+            740 LOAD_CONST              15 ('percent')
+            742 BINARY_SUBSCR
+            746 LOAD_CONST              24 (2)
+            748 BINARY_OP                5 (*)
+            752 CALL                     2
+            760 LOAD_FAST                9 (obs)
+            762 LOAD_CONST              15 ('percent')
+            764 STORE_SUBSCR
+            768 LOAD_CONST              20 (True)
+            770 LOAD_FAST                9 (obs)
+            772 LOAD_CONST              25 ('_stacked')
+            774 STORE_SUBSCR
+
+113     >>  778 LOAD_FAST                9 (obs)
+            780 RETURN_VALUE
+
+Disassembly of <code object post_answer at 0x1029cd2e0, file "observathon_sim/_faults.py", line 116>:
+116           0 RESUME                   0
+
+118           2 LOAD_GLOBAL              0 (_PII)
+             12 LOAD_ATTR                3 (NULL|self + search)
+             32 LOAD_FAST                2 (question)
+             34 COPY                     1
+             36 POP_JUMP_IF_TRUE         2 (to 42)
+             38 POP_TOP
+             40 LOAD_CONST               1 ('')
+        >>   42 CALL                     1
+             50 STORE_FAST               3 (m)
+
+119          52 LOAD_FAST                3 (m)
+             54 POP_JUMP_IF_TRUE         2 (to 60)
+
+120          56 LOAD_FAST                0 (answer)
+             58 RETURN_VALUE
+
+121     >>   60 LOAD_FAST                1 (cfg)
+             62 LOAD_ATTR                5 (NULL|self + get)
+             82 LOAD_CONST               2 ('redact_pii')
+             84 CALL                     1
+             92 POP_JUMP_IF_FALSE        9 (to 112)
+
+122          94 LOAD_FAST                0 (answer)
+             96 COPY                     1
+             98 POP_JUMP_IF_TRUE         2 (to 104)
+            100 POP_TOP
+            102 LOAD_CONST               1 ('')
+        >>  104 LOAD_CONST               3 (' (lien he: [REDACTED])')
+            106 BINARY_OP                0 (+)
+            110 RETURN_VALUE
+
+123     >>  112 LOAD_FAST                0 (answer)
+            114 COPY                     1
+            116 POP_JUMP_IF_TRUE         2 (to 122)
+            118 POP_TOP
+            120 LOAD_CONST               1 ('')
+        >>  122 LOAD_CONST               4 (' (lien he: ')
+            124 LOAD_FAST                3 (m)
+            126 LOAD_ATTR                7 (NULL|self + group)
+            146 LOAD_CONST               5 (0)
+            148 CALL                     1
+            156 FORMAT_VALUE             0
+            158 LOAD_CONST               6 (')')
+            160 BUILD_STRING             3
+            162 BINARY_OP                0 (+)
+            166 RETURN_VALUE

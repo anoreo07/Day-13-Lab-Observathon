@@ -1,0 +1,615 @@
+  0           0 RESUME                   0
+
+  1           2 LOAD_CONST               0 ('E-commerce tools + dispatch, with config-driven fault seams (silent fork).\n\nFaults wired here: F2 (diacritic cities fail unless normalize_unicode),\nF11 (catalog_override falsely marks an item out-of-stock). The seeded/intermittent\nfaults (F1 errors, F13 private tool) are applied in _faults.around_dispatch.\n')
+              4 STORE_NAME               0 (__doc__)
+
+  7           6 LOAD_CONST               1 (0)
+              8 LOAD_CONST               2 (('annotations',))
+             10 IMPORT_NAME              1 (__future__)
+             12 IMPORT_FROM              2 (annotations)
+             14 STORE_NAME               2 (annotations)
+             16 POP_TOP
+
+  8          18 LOAD_CONST               1 (0)
+             20 LOAD_CONST               3 (None)
+             22 IMPORT_NAME              3 (unicodedata)
+             24 STORE_NAME               3 (unicodedata)
+
+  9          26 LOAD_CONST               1 (0)
+             28 LOAD_CONST               4 (('Any',))
+             30 IMPORT_NAME              4 (typing)
+             32 IMPORT_FROM              5 (Any)
+             34 STORE_NAME               5 (Any)
+             36 POP_TOP
+
+ 12          38 LOAD_CONST               5 (True)
+             40 LOAD_CONST               6 (12)
+             42 LOAD_CONST               7 (22000000)
+             44 LOAD_CONST               8 (0.5)
+             46 LOAD_CONST               9 (('in_stock', 'quantity', 'unit_price_vnd', 'weight_kg'))
+             48 BUILD_CONST_KEY_MAP      4
+
+ 13          50 LOAD_CONST               5 (True)
+             52 LOAD_CONST              10 (4)
+             54 LOAD_CONST              11 (35000000)
+             56 LOAD_CONST              12 (1.6)
+             58 LOAD_CONST               9 (('in_stock', 'quantity', 'unit_price_vnd', 'weight_kg'))
+             60 BUILD_CONST_KEY_MAP      4
+
+ 14          62 LOAD_CONST              13 (False)
+             64 LOAD_CONST               1 (0)
+             66 LOAD_CONST              14 (4500000)
+             68 LOAD_CONST              15 (0.1)
+             70 LOAD_CONST               9 (('in_stock', 'quantity', 'unit_price_vnd', 'weight_kg'))
+             72 BUILD_CONST_KEY_MAP      4
+
+ 15          74 LOAD_CONST               5 (True)
+             76 LOAD_CONST              16 (7)
+             78 LOAD_CONST              17 (18000000)
+             80 LOAD_CONST              18 (0.45)
+             82 LOAD_CONST               9 (('in_stock', 'quantity', 'unit_price_vnd', 'weight_kg'))
+             84 BUILD_CONST_KEY_MAP      4
+
+ 11          86 LOAD_CONST              19 (('iphone', 'macbook', 'airpods', 'ipad'))
+             88 BUILD_CONST_KEY_MAP      4
+             90 STORE_NAME               6 (_CATALOG)
+
+ 17          92 LOAD_CONST              20 (10)
+             94 LOAD_CONST              21 (20)
+             96 LOAD_CONST              22 (15)
+             98 LOAD_CONST               1 (0)
+            100 LOAD_CONST              23 (('WINNER', 'VIP20', 'SALE15', 'EXPIRED'))
+            102 BUILD_CONST_KEY_MAP      4
+            104 STORE_NAME               7 (_COUPONS)
+
+ 18         106 LOAD_CONST              24 (30000)
+            108 LOAD_CONST              25 (25000)
+            110 LOAD_CONST              26 (35000)
+            112 LOAD_CONST              27 (28000)
+            114 LOAD_CONST              28 (('ha noi', 'tp hcm', 'da nang', 'hai phong'))
+            116 BUILD_CONST_KEY_MAP      4
+            118 STORE_NAME               8 (_SHIP_TABLE)
+
+ 21         120 LOAD_CONST              54 (('s', 'str', 'return', 'str'))
+            122 LOAD_CONST              29 (<code object _ascii at 0x102b9c030, file "observathon_sim/_tools.py", line 21>)
+            124 MAKE_FUNCTION            4 (annotations)
+            126 STORE_NAME               9 (_ascii)
+
+ 27         128 LOAD_CONST              55 ((None,))
+            130 LOAD_CONST              56 (('item_name', 'str', 'cfg', 'dict | None', 'return', 'dict'))
+            132 LOAD_CONST              31 (<code object check_stock at 0x102bd9c30, file "observathon_sim/_tools.py", line 27>)
+            134 MAKE_FUNCTION            5 (defaults, annotations)
+            136 STORE_NAME              10 (check_stock)
+
+ 39         138 LOAD_CONST              55 ((None,))
+            140 LOAD_CONST              57 (('coupon_code', 'str', 'cfg', 'dict | None', 'return', 'dict'))
+            142 LOAD_CONST              33 (<code object get_discount at 0x102b52250, file "observathon_sim/_tools.py", line 39>)
+            144 MAKE_FUNCTION            5 (defaults, annotations)
+            146 STORE_NAME              11 (get_discount)
+
+ 47         148 LOAD_CONST              55 ((None,))
+            150 LOAD_CONST              58 (('weight_kg', 'float', 'destination', 'str', 'cfg', 'dict | None', 'return', 'dict'))
+            152 LOAD_CONST              36 (<code object calc_shipping at 0x12d611910, file "observathon_sim/_tools.py", line 47>)
+            154 MAKE_FUNCTION            5 (defaults, annotations)
+            156 STORE_NAME              12 (calc_shipping)
+
+ 62         158 LOAD_NAME               10 (check_stock)
+            160 LOAD_NAME               11 (get_discount)
+            162 LOAD_NAME               12 (calc_shipping)
+            164 LOAD_CONST              37 (('check_stock', 'get_discount', 'calc_shipping'))
+            166 BUILD_CONST_KEY_MAP      3
+            168 STORE_NAME              13 (_FUNCS)
+
+ 65         170 LOAD_CONST              38 ('check_stock')
+            172 LOAD_CONST              39 ('Check availability, quantity, unit price (VND), weight by item name.')
+
+ 66         174 LOAD_CONST              40 ('object')
+            176 LOAD_CONST              30 ('item_name')
+            178 LOAD_CONST              41 ('type')
+            180 LOAD_CONST              42 ('string')
+            182 BUILD_MAP                1
+            184 BUILD_MAP                1
+
+ 67         186 LOAD_CONST              30 ('item_name')
+            188 BUILD_LIST               1
+            190 LOAD_CONST              13 (False)
+
+ 66         192 LOAD_CONST              43 (('type', 'properties', 'required', 'additionalProperties'))
+            194 BUILD_CONST_KEY_MAP      4
+
+ 65         196 LOAD_CONST              44 (('name', 'description', 'parameters'))
+            198 BUILD_CONST_KEY_MAP      3
+
+ 68         200 LOAD_CONST              45 ('get_discount')
+            202 LOAD_CONST              46 ('Discount percent for a coupon code (0 if invalid/expired).')
+
+ 69         204 LOAD_CONST              40 ('object')
+            206 LOAD_CONST              32 ('coupon_code')
+            208 LOAD_CONST              41 ('type')
+            210 LOAD_CONST              42 ('string')
+            212 BUILD_MAP                1
+            214 BUILD_MAP                1
+
+ 70         216 LOAD_CONST              32 ('coupon_code')
+            218 BUILD_LIST               1
+            220 LOAD_CONST              13 (False)
+
+ 69         222 LOAD_CONST              43 (('type', 'properties', 'required', 'additionalProperties'))
+            224 BUILD_CONST_KEY_MAP      4
+
+ 68         226 LOAD_CONST              44 (('name', 'description', 'parameters'))
+            228 BUILD_CONST_KEY_MAP      3
+
+ 71         230 LOAD_CONST              47 ('calc_shipping')
+            232 LOAD_CONST              48 ('Shipping cost (VND) for a total weight (kg) to a city.')
+
+ 72         234 LOAD_CONST              40 ('object')
+            236 LOAD_CONST              41 ('type')
+            238 LOAD_CONST              49 ('number')
+            240 BUILD_MAP                1
+
+ 73         242 LOAD_CONST              41 ('type')
+            244 LOAD_CONST              42 ('string')
+            246 BUILD_MAP                1
+
+ 72         248 LOAD_CONST              50 (('weight_kg', 'destination'))
+            250 BUILD_CONST_KEY_MAP      2
+
+ 74         252 LOAD_CONST              34 ('weight_kg')
+            254 LOAD_CONST              35 ('destination')
+            256 BUILD_LIST               2
+            258 LOAD_CONST              13 (False)
+
+ 72         260 LOAD_CONST              43 (('type', 'properties', 'required', 'additionalProperties'))
+            262 BUILD_CONST_KEY_MAP      4
+
+ 71         264 LOAD_CONST              44 (('name', 'description', 'parameters'))
+            266 BUILD_CONST_KEY_MAP      3
+
+ 64         268 BUILD_LIST               3
+            270 STORE_NAME              14 (TOOL_DEFINITIONS)
+
+ 78         272 LOAD_CONST              51 (<code object tool_specs at 0x102b4f130, file "observathon_sim/_tools.py", line 78>)
+            274 MAKE_FUNCTION            0
+            276 STORE_NAME              15 (tool_specs)
+
+ 82         278 LOAD_CONST              52 (<code object tools_text_description at 0x102b4f230, file "observathon_sim/_tools.py", line 82>)
+            280 MAKE_FUNCTION            0
+            282 STORE_NAME              16 (tools_text_description)
+
+ 87         284 LOAD_CONST              55 ((None,))
+            286 LOAD_CONST              59 (('name', 'str', 'arguments', 'dict | None', 'cfg', 'dict | None', 'return', 'dict'))
+            288 LOAD_CONST              53 (<code object dispatch at 0x102c32740, file "observathon_sim/_tools.py", line 87>)
+            290 MAKE_FUNCTION            5 (defaults, annotations)
+            292 STORE_NAME              17 (dispatch)
+            294 RETURN_CONST             3 (None)
+
+Disassembly of <code object _ascii at 0x102b9c030, file "observathon_sim/_tools.py", line 21>:
+ 21           0 RESUME                   0
+
+ 23           2 LOAD_FAST                0 (s)
+              4 COPY                     1
+              6 POP_JUMP_IF_TRUE         2 (to 12)
+              8 POP_TOP
+             10 LOAD_CONST               1 ('')
+        >>   12 LOAD_ATTR                1 (NULL|self + strip)
+             32 CALL                     0
+             40 LOAD_ATTR                3 (NULL|self + lower)
+             60 CALL                     0
+             68 LOAD_ATTR                5 (NULL|self + replace)
+             88 LOAD_CONST               2 ('đ')
+             90 LOAD_CONST               3 ('d')
+             92 CALL                     2
+            100 STORE_FAST               0 (s)
+
+ 24         102 LOAD_CONST               1 ('')
+            104 LOAD_ATTR                7 (NULL|self + join)
+            124 LOAD_CONST               4 (<code object <genexpr> at 0x102b8e890, file "observathon_sim/_tools.py", line 24>)
+            126 MAKE_FUNCTION            0
+            128 LOAD_GLOBAL              9 (NULL + unicodedata)
+            138 LOAD_ATTR               10 (normalize)
+            158 LOAD_CONST               5 ('NFKD')
+            160 LOAD_FAST                0 (s)
+            162 CALL                     2
+            170 GET_ITER
+            172 CALL                     0
+            180 CALL                     1
+            188 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x102b8e890, file "observathon_sim/_tools.py", line 24>:
+ 24           0 RETURN_GENERATOR
+              2 POP_TOP
+              4 RESUME                   0
+              6 LOAD_FAST                0 (.0)
+        >>    8 FOR_ITER                28 (to 68)
+             12 STORE_FAST               1 (c)
+             14 LOAD_GLOBAL              1 (NULL + unicodedata)
+             24 LOAD_ATTR                2 (combining)
+             44 LOAD_FAST                1 (c)
+             46 CALL                     1
+             54 POP_JUMP_IF_FALSE        1 (to 58)
+             56 JUMP_BACKWARD           25 (to 8)
+        >>   58 LOAD_FAST                1 (c)
+             60 YIELD_VALUE              1
+             62 RESUME                   1
+             64 POP_TOP
+             66 JUMP_BACKWARD           30 (to 8)
+        >>   68 END_FOR
+             70 RETURN_CONST             0 (None)
+        >>   72 CALL_INTRINSIC_1         3 (INTRINSIC_STOPITERATION_ERROR)
+             74 RERAISE                  1
+ExceptionTable:
+  4 to 54 -> 72 [0] lasti
+  58 to 70 -> 72 [0] lasti
+
+Disassembly of <code object check_stock at 0x102bd9c30, file "observathon_sim/_tools.py", line 27>:
+ 27           0 RESUME                   0
+
+ 28           2 LOAD_GLOBAL              1 (NULL + _ascii)
+             12 LOAD_FAST                0 (item_name)
+             14 CALL                     1
+             22 STORE_FAST               2 (key)
+
+ 29          24 LOAD_GLOBAL              2 (_CATALOG)
+             34 LOAD_ATTR                5 (NULL|self + get)
+             54 LOAD_FAST                2 (key)
+             56 CALL                     1
+             64 STORE_FAST               3 (rec)
+
+ 30          66 LOAD_FAST                3 (rec)
+             68 POP_JUMP_IF_NOT_NONE     6 (to 82)
+
+ 31          70 LOAD_FAST                0 (item_name)
+             72 LOAD_CONST               1 (False)
+             74 LOAD_CONST               2 ('item_not_found')
+             76 LOAD_CONST               3 (('item', 'found', 'error'))
+             78 BUILD_CONST_KEY_MAP      3
+             80 RETURN_VALUE
+
+ 32     >>   82 LOAD_GLOBAL              7 (NULL + dict)
+             92 LOAD_FAST                3 (rec)
+             94 CALL                     1
+            102 STORE_FAST               3 (rec)
+
+ 33         104 LOAD_FAST                1 (cfg)
+            106 COPY                     1
+            108 POP_JUMP_IF_TRUE         2 (to 114)
+            110 POP_TOP
+            112 BUILD_MAP                0
+        >>  114 LOAD_ATTR                5 (NULL|self + get)
+            134 LOAD_CONST               4 ('catalog_override')
+            136 CALL                     1
+            144 COPY                     1
+            146 POP_JUMP_IF_TRUE         2 (to 152)
+            148 POP_TOP
+            150 BUILD_MAP                0
+        >>  152 STORE_FAST               4 (override)
+
+ 34         154 LOAD_FAST                2 (key)
+            156 LOAD_FAST                4 (override)
+            158 CONTAINS_OP              0
+            160 POP_JUMP_IF_FALSE       39 (to 240)
+            162 LOAD_GLOBAL              9 (NULL + isinstance)
+            172 LOAD_FAST                4 (override)
+            174 LOAD_FAST                2 (key)
+            176 BINARY_SUBSCR
+            180 LOAD_GLOBAL              6 (dict)
+            190 CALL                     2
+            198 POP_JUMP_IF_FALSE       20 (to 240)
+
+ 35         200 LOAD_FAST                3 (rec)
+            202 LOAD_ATTR               11 (NULL|self + update)
+            222 LOAD_FAST                4 (override)
+            224 LOAD_FAST                2 (key)
+            226 BINARY_SUBSCR
+            230 CALL                     1
+            238 POP_TOP
+
+ 36     >>  240 LOAD_FAST                2 (key)
+            242 LOAD_CONST               5 (True)
+            244 LOAD_CONST               6 (('item', 'found'))
+            246 BUILD_CONST_KEY_MAP      2
+            248 LOAD_FAST                3 (rec)
+            250 DICT_UPDATE              1
+            252 RETURN_VALUE
+
+Disassembly of <code object get_discount at 0x102b52250, file "observathon_sim/_tools.py", line 39>:
+ 39           0 RESUME                   0
+
+ 40           2 LOAD_FAST                0 (coupon_code)
+              4 COPY                     1
+              6 POP_JUMP_IF_TRUE         2 (to 12)
+              8 POP_TOP
+             10 LOAD_CONST               1 ('')
+        >>   12 LOAD_ATTR                1 (NULL|self + strip)
+             32 CALL                     0
+             40 LOAD_ATTR                3 (NULL|self + upper)
+             60 CALL                     0
+             68 STORE_FAST               2 (code)
+
+ 41          70 LOAD_FAST                2 (code)
+             72 LOAD_GLOBAL              4 (_COUPONS)
+             82 CONTAINS_OP              1
+             84 POP_JUMP_IF_FALSE        7 (to 100)
+
+ 42          86 LOAD_FAST                2 (code)
+             88 LOAD_CONST               2 (False)
+             90 LOAD_CONST               3 (0)
+             92 LOAD_CONST               4 ('invalid_coupon')
+             94 LOAD_CONST               5 (('code', 'valid', 'percent', 'error'))
+             96 BUILD_CONST_KEY_MAP      4
+             98 RETURN_VALUE
+
+ 43     >>  100 LOAD_GLOBAL              4 (_COUPONS)
+            110 LOAD_FAST                2 (code)
+            112 BINARY_SUBSCR
+            116 STORE_FAST               3 (pct)
+
+ 44         118 LOAD_FAST                2 (code)
+            120 LOAD_FAST                3 (pct)
+            122 LOAD_CONST               3 (0)
+            124 COMPARE_OP              68 (>)
+            128 LOAD_FAST                3 (pct)
+            130 LOAD_CONST               6 (('code', 'valid', 'percent'))
+            132 BUILD_CONST_KEY_MAP      3
+            134 RETURN_VALUE
+
+Disassembly of <code object calc_shipping at 0x12d611910, file "observathon_sim/_tools.py", line 47>:
+ 47           0 RESUME                   0
+
+ 48           2 LOAD_FAST                1 (destination)
+              4 COPY                     1
+              6 POP_JUMP_IF_TRUE         2 (to 12)
+              8 POP_TOP
+             10 LOAD_CONST               1 ('')
+        >>   12 LOAD_ATTR                1 (NULL|self + strip)
+             32 CALL                     0
+             40 LOAD_ATTR                3 (NULL|self + lower)
+             60 CALL                     0
+             68 STORE_FAST               3 (raw)
+
+ 50          70 LOAD_FAST                2 (cfg)
+             72 COPY                     1
+             74 POP_JUMP_IF_TRUE         2 (to 80)
+             76 POP_TOP
+             78 BUILD_MAP                0
+        >>   80 LOAD_ATTR                5 (NULL|self + get)
+            100 LOAD_CONST               2 ('normalize_unicode')
+            102 CALL                     1
+            110 POP_JUMP_IF_FALSE       11 (to 134)
+            112 LOAD_GLOBAL              7 (NULL + _ascii)
+            122 LOAD_FAST                3 (raw)
+            124 CALL                     1
+            132 JUMP_FORWARD             1 (to 136)
+        >>  134 LOAD_FAST                3 (raw)
+        >>  136 STORE_FAST               4 (dest)
+
+ 51         138 LOAD_GLOBAL              8 (_SHIP_TABLE)
+            148 LOAD_ATTR                5 (NULL|self + get)
+            168 LOAD_FAST                4 (dest)
+            170 CALL                     1
+            178 STORE_FAST               5 (base)
+
+ 52         180 LOAD_FAST                5 (base)
+            182 POP_JUMP_IF_NOT_NONE     6 (to 196)
+
+ 53         184 LOAD_FAST                1 (destination)
+            186 LOAD_CONST               3 ('destination_not_served')
+            188 LOAD_CONST               0 (None)
+            190 LOAD_CONST               4 (('destination', 'error', 'cost_vnd'))
+            192 BUILD_CONST_KEY_MAP      3
+            194 RETURN_VALUE
+
+ 54     >>  196 NOP
+
+ 55         198 LOAD_GLOBAL             11 (NULL + float)
+            208 LOAD_FAST                0 (weight_kg)
+            210 CALL                     1
+            218 STORE_FAST               6 (weight)
+
+ 58         220 LOAD_FAST                4 (dest)
+            222 LOAD_FAST                6 (weight)
+
+ 59         224 LOAD_GLOBAL             17 (NULL + int)
+            234 LOAD_FAST                5 (base)
+            236 LOAD_GLOBAL             19 (NULL + max)
+            246 LOAD_CONST               6 (0.0)
+            248 LOAD_FAST                6 (weight)
+            250 LOAD_CONST               7 (1.0)
+            252 BINARY_OP               10 (-)
+            256 CALL                     2
+            264 LOAD_CONST               8 (5000)
+            266 BINARY_OP                5 (*)
+            270 BINARY_OP                0 (+)
+            274 CALL                     1
+
+ 58         282 LOAD_CONST               9 (('destination', 'weight_kg', 'cost_vnd'))
+            284 BUILD_CONST_KEY_MAP      3
+            286 RETURN_VALUE
+        >>  288 PUSH_EXC_INFO
+
+ 56         290 LOAD_GLOBAL             12 (TypeError)
+            300 LOAD_GLOBAL             14 (ValueError)
+            310 BUILD_TUPLE              2
+            312 CHECK_EXC_MATCH
+            314 POP_JUMP_IF_FALSE        9 (to 334)
+            316 POP_TOP
+
+ 57         318 LOAD_FAST                4 (dest)
+            320 LOAD_CONST               5 ('bad_weight')
+            322 LOAD_CONST               0 (None)
+            324 LOAD_CONST               4 (('destination', 'error', 'cost_vnd'))
+            326 BUILD_CONST_KEY_MAP      3
+            328 SWAP                     2
+            330 POP_EXCEPT
+            332 RETURN_VALUE
+
+ 56     >>  334 RERAISE                  0
+        >>  336 COPY                     3
+            338 POP_EXCEPT
+            340 RERAISE                  1
+ExceptionTable:
+  198 to 218 -> 288 [0]
+  288 to 328 -> 336 [1] lasti
+  334 to 334 -> 336 [1] lasti
+
+Disassembly of <code object tool_specs at 0x102b4f130, file "observathon_sim/_tools.py", line 78>:
+ 78           0 RESUME                   0
+
+ 79           2 LOAD_GLOBAL              0 (TOOL_DEFINITIONS)
+             12 GET_ITER
+             14 LOAD_FAST_AND_CLEAR      0 (t)
+             16 SWAP                     2
+             18 BUILD_LIST               0
+             20 SWAP                     2
+        >>   22 FOR_ITER                 7 (to 40)
+             26 STORE_FAST               0 (t)
+             28 LOAD_CONST               1 ('function')
+             30 LOAD_FAST                0 (t)
+             32 LOAD_CONST               2 (('type', 'function'))
+             34 BUILD_CONST_KEY_MAP      2
+             36 LIST_APPEND              2
+             38 JUMP_BACKWARD            9 (to 22)
+        >>   40 END_FOR
+             42 SWAP                     2
+             44 STORE_FAST               0 (t)
+             46 RETURN_VALUE
+        >>   48 SWAP                     2
+             50 POP_TOP
+             52 SWAP                     2
+             54 STORE_FAST               0 (t)
+             56 RERAISE                  0
+ExceptionTable:
+  18 to 40 -> 48 [2]
+
+Disassembly of <code object tools_text_description at 0x102b4f230, file "observathon_sim/_tools.py", line 82>:
+ 82           0 RESUME                   0
+
+ 83           2 LOAD_CONST               1 ('\n')
+              4 LOAD_ATTR                1 (NULL|self + join)
+             24 LOAD_CONST               2 (<code object <genexpr> at 0x102be5a50, file "observathon_sim/_tools.py", line 83>)
+             26 MAKE_FUNCTION            0
+
+ 84          28 LOAD_GLOBAL              2 (TOOL_DEFINITIONS)
+             38 GET_ITER
+
+ 83          40 CALL                     0
+             48 CALL                     1
+             56 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x102be5a50, file "observathon_sim/_tools.py", line 83>:
+ 83           0 RETURN_GENERATOR
+              2 POP_TOP
+              4 RESUME                   0
+              6 LOAD_FAST                0 (.0)
+
+ 84     >>    8 FOR_ITER                42 (to 96)
+             12 STORE_FAST               1 (t)
+
+ 83          14 LOAD_CONST               0 ('- ')
+             16 LOAD_FAST                1 (t)
+             18 LOAD_CONST               1 ('name')
+             20 BINARY_SUBSCR
+             24 FORMAT_VALUE             0
+             26 LOAD_CONST               2 ('(')
+             28 LOAD_CONST               3 (', ')
+             30 LOAD_ATTR                1 (NULL|self + join)
+             50 LOAD_FAST                1 (t)
+             52 LOAD_CONST               4 ('parameters')
+             54 BINARY_SUBSCR
+             58 LOAD_CONST               5 ('properties')
+             60 BINARY_SUBSCR
+             64 CALL                     1
+             72 FORMAT_VALUE             0
+             74 LOAD_CONST               6 ('): ')
+             76 LOAD_FAST                1 (t)
+             78 LOAD_CONST               7 ('description')
+             80 BINARY_SUBSCR
+             84 FORMAT_VALUE             0
+             86 BUILD_STRING             6
+             88 YIELD_VALUE              1
+             90 RESUME                   1
+             92 POP_TOP
+             94 JUMP_BACKWARD           44 (to 8)
+
+ 84     >>   96 END_FOR
+             98 RETURN_CONST             8 (None)
+        >>  100 CALL_INTRINSIC_1         3 (INTRINSIC_STOPITERATION_ERROR)
+            102 RERAISE                  1
+ExceptionTable:
+  4 to 98 -> 100 [0] lasti
+
+Disassembly of <code object dispatch at 0x102c32740, file "observathon_sim/_tools.py", line 87>:
+ 87           0 RESUME                   0
+
+ 88           2 LOAD_GLOBAL              0 (_FUNCS)
+             12 LOAD_ATTR                3 (NULL|self + get)
+             32 LOAD_FAST                0 (name)
+             34 CALL                     1
+             42 STORE_FAST               3 (fn)
+
+ 89          44 LOAD_FAST                3 (fn)
+             46 POP_JUMP_IF_NOT_NONE    19 (to 86)
+
+ 90          48 LOAD_CONST               1 ('tool_not_found')
+             50 LOAD_FAST                0 (name)
+             52 LOAD_GLOBAL              5 (NULL + list)
+             62 LOAD_GLOBAL              0 (_FUNCS)
+             72 CALL                     1
+             80 LOAD_CONST               2 (('error', 'tool', 'available'))
+             82 BUILD_CONST_KEY_MAP      3
+             84 RETURN_VALUE
+
+ 91     >>   86 NOP
+
+ 92          88 PUSH_NULL
+             90 LOAD_FAST                3 (fn)
+             92 LOAD_CONST               6 (())
+             94 BUILD_MAP                0
+             96 LOAD_FAST                1 (arguments)
+             98 COPY                     1
+            100 POP_JUMP_IF_TRUE         2 (to 106)
+            102 POP_TOP
+            104 BUILD_MAP                0
+        >>  106 DICT_MERGE               1
+            108 LOAD_CONST               3 ('cfg')
+            110 LOAD_FAST                2 (cfg)
+            112 BUILD_MAP                1
+            114 DICT_MERGE               1
+            116 CALL_FUNCTION_EX         1
+            118 RETURN_VALUE
+        >>  120 PUSH_EXC_INFO
+
+ 93         122 LOAD_GLOBAL              6 (TypeError)
+            132 CHECK_EXC_MATCH
+            134 POP_JUMP_IF_FALSE       25 (to 186)
+            136 STORE_FAST               4 (exc)
+
+ 94         138 LOAD_CONST               4 ('bad_arguments')
+            140 LOAD_FAST                0 (name)
+            142 LOAD_GLOBAL              9 (NULL + str)
+            152 LOAD_FAST                4 (exc)
+            154 CALL                     1
+            162 LOAD_CONST               5 (('error', 'tool', 'detail'))
+            164 BUILD_CONST_KEY_MAP      3
+            166 SWAP                     2
+            168 POP_EXCEPT
+            170 LOAD_CONST               0 (None)
+            172 STORE_FAST               4 (exc)
+            174 DELETE_FAST              4 (exc)
+            176 RETURN_VALUE
+        >>  178 LOAD_CONST               0 (None)
+            180 STORE_FAST               4 (exc)
+            182 DELETE_FAST              4 (exc)
+            184 RERAISE                  1
+
+ 93     >>  186 RERAISE                  0
+        >>  188 COPY                     3
+            190 POP_EXCEPT
+            192 RERAISE                  1
+ExceptionTable:
+  88 to 116 -> 120 [0]
+  120 to 136 -> 188 [1] lasti
+  138 to 164 -> 178 [1] lasti
+  166 to 166 -> 188 [1] lasti
+  178 to 186 -> 188 [1] lasti

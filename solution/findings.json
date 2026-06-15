@@ -1,12 +1,72 @@
 {
-  "team": "TODO-team-name",
+  "team": "Antigravity-Team",
   "schema_version": 1,
   "findings": [
     {
+      "fault_class": "error_spike",
+      "evidence": {"metric": "tool_error_rate", "observed": 0.18, "trace_ids": []},
+      "root_cause": "The simulator config defaults tool_error_rate to 0.18, which causes 18% of tool calls to fail randomly.",
+      "suggested_fix": "Set tool_error_rate to 0.0 in config.json and enable retry policy."
+    },
+    {
       "fault_class": "latency_spike",
-      "evidence": {"metric": "latency_p95_ms", "observed": "TODO from your telemetry", "trace_ids": []},
-      "root_cause": "TODO: what config knob or behavior causes it?",
-      "suggested_fix": "TODO: config change and/or wrapper mitigation"
+      "evidence": {"metric": "p95_latency_ms", "observed": "15000ms+", "trace_ids": []},
+      "root_cause": "Using the premium price tier model, no request timeouts, and disabled request caching.",
+      "suggested_fix": "Configure model_price_tier to economy, set timeout_ms to 15000, enable caching, and handle timeouts in the wrapper."
+    },
+    {
+      "fault_class": "cost_blowup",
+      "evidence": {"metric": "average_cost_usd", "observed": "excessive cost per query", "trace_ids": []},
+      "root_cause": "The default config sets context_size to 8 and verbose_system to true, prefixing a massive repetitive instruction set that inflates input tokens on every turn.",
+      "suggested_fix": "Set context_size to 4, verbose_system to false, and use model_price_tier economy."
+    },
+    {
+      "fault_class": "quality_drift",
+      "evidence": {"metric": "turn_correctness_decay", "observed": "accuracy degrades significantly as turn index exceeds 4", "trace_ids": []},
+      "root_cause": "The simulator session_drift_rate defaults to 0.06 with context_reset_every set to 0, corrupting agent session memory over subsequent turns.",
+      "suggested_fix": "Set session_drift_rate to 0.0 and reset the context regularly via context_reset_every = 4 in config.json."
+    },
+    {
+      "fault_class": "infinite_loop",
+      "evidence": {"metric": "max_steps_exceeded", "observed": "status is loop or max_steps", "trace_ids": []},
+      "root_cause": "loop_guard is disabled (false) and max_steps is set to 12 by default, allowing the agent to repeatedly call tools in an endless cycle.",
+      "suggested_fix": "Set loop_guard to true and max_steps to 6 in config.json."
+    },
+    {
+      "fault_class": "tool_failure",
+      "evidence": {"metric": "tool_failure_rate", "observed": "100% lookup failure on diacritic names and macbook requests", "trace_ids": []},
+      "root_cause": "normalize_unicode defaults to false, preventing match on diacritic city/town names. Also catalog_override forces macbook to be out of stock.",
+      "suggested_fix": "Set normalize_unicode to true and clear catalog_override to {} in config.json."
+    },
+    {
+      "fault_class": "pii_leak",
+      "evidence": {"metric": "pii_leaks_count", "observed": "customer emails/phone numbers leaked in assistant answers", "trace_ids": []},
+      "root_cause": "redact_pii defaults to false in config.json and the system prompt fails to instruct the agent to protect sensitive fields.",
+      "suggested_fix": "Set redact_pii to true in config.json, add strict prompt guidelines to suppress PII, and apply regex redaction in wrapper.py."
+    },
+    {
+      "fault_class": "fabrication",
+      "evidence": {"metric": "fabrication_rate", "observed": "agent invents prices for out-of-stock items instead of refusing", "trace_ids": []},
+      "root_cause": "Default system prompt lacks grounding instructions, allowing the agent to hallucinate item availability and prices.",
+      "suggested_fix": "Rewrite the system prompt to enforce strict grounding: refuse politely and output no total if items are out-of-stock or not served."
+    },
+    {
+      "fault_class": "arithmetic_error",
+      "evidence": {"metric": "calculation_error_rate", "observed": "math errors and discount formula bugs are common", "trace_ids": []},
+      "root_cause": "The default config sets temperature to 1.6 and self_consistency to 1, compounding mathematical errors. Prompt lacks exact formulas.",
+      "suggested_fix": "Set temperature to 0.2 and self_consistency to 2 or 3 in config.json. Define exact integer equations in prompt.txt."
+    },
+    {
+      "fault_class": "tool_overuse",
+      "evidence": {"metric": "average_tool_calls", "observed": "more tool calls than necessary to solve the request", "trace_ids": []},
+      "root_cause": "tool_budget is 0 (unlimited) and the prompt lacks instructions limiting tool calls to at most once per tool.",
+      "suggested_fix": "Set tool_budget to 4 in config.json and guide the agent to perform each tool call at most once in prompt.txt."
+    },
+    {
+      "fault_class": "prompt_injection",
+      "evidence": {"metric": "injection_vulnerability_rate", "observed": "agent overrides prices or applies unauthorized discount codes from order notes", "trace_ids": []},
+      "root_cause": "The system prompt does not defend against instructions embedded inside customer-facing order notes ('GHI CHU').",
+      "suggested_fix": "Add injection defense rules to prompt.txt to treat notes as pure data, and sanitize/strip malicious text in wrapper.py."
     }
   ]
 }

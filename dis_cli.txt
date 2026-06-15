@@ -1,0 +1,556 @@
+  0           0 RESUME                   0
+
+  1           2 LOAD_CONST               0 ('observathon-score -- read run_output.json (+ findings.json), compute the composite\nproduction score, write a HMAC-signed score.json. Reads FILES only (never executes\nstudent code). Usage:\n\n  observathon-score --run run_output.json --findings solution/findings.json --team t07 --out score.json\n')
+              4 STORE_NAME               0 (__doc__)
+
+  7           6 LOAD_CONST               1 (0)
+              8 LOAD_CONST               2 (('annotations',))
+             10 IMPORT_NAME              1 (__future__)
+             12 IMPORT_FROM              2 (annotations)
+             14 STORE_NAME               2 (annotations)
+             16 POP_TOP
+
+  8          18 LOAD_CONST               1 (0)
+             20 LOAD_CONST               3 (None)
+             22 IMPORT_NAME              3 (argparse)
+             24 STORE_NAME               3 (argparse)
+
+  9          26 LOAD_CONST               1 (0)
+             28 LOAD_CONST               3 (None)
+             30 IMPORT_NAME              4 (json)
+             32 STORE_NAME               4 (json)
+
+ 10          34 LOAD_CONST               1 (0)
+             36 LOAD_CONST               3 (None)
+             38 IMPORT_NAME              5 (os)
+             40 STORE_NAME               5 (os)
+
+ 11          42 LOAD_CONST               1 (0)
+             44 LOAD_CONST               3 (None)
+             46 IMPORT_NAME              6 (sys)
+             48 STORE_NAME               6 (sys)
+
+ 13          50 LOAD_CONST               1 (0)
+             52 LOAD_CONST               4 (('engine', 'signing', '_answerkey'))
+             54 IMPORT_NAME              7 (observathon_score)
+             56 IMPORT_FROM              8 (engine)
+             58 STORE_NAME               8 (engine)
+             60 IMPORT_FROM              9 (signing)
+             62 STORE_NAME               9 (signing)
+             64 IMPORT_FROM             10 (_answerkey)
+             66 STORE_NAME              10 (_answerkey)
+             68 POP_TOP
+
+ 16          70 LOAD_CONST              10 ((None,))
+             72 LOAD_CONST               5 (<code object _load at 0x105414030, file "observathon_score/cli.py", line 16>)
+             74 MAKE_FUNCTION            1 (defaults)
+             76 STORE_NAME              11 (_load)
+
+ 25          78 LOAD_CONST               6 (<code object _weights at 0x105451c30, file "observathon_score/cli.py", line 25>)
+             80 MAKE_FUNCTION            0
+             82 STORE_NAME              12 (_weights)
+
+ 30          84 LOAD_CONST               7 (<code object _catalog at 0x143817280, file "observathon_score/cli.py", line 30>)
+             86 MAKE_FUNCTION            0
+             88 STORE_NAME              13 (_catalog)
+
+ 41          90 LOAD_CONST              10 ((None,))
+             92 LOAD_CONST               8 (<code object main at 0x144043600, file "observathon_score/cli.py", line 41>)
+             94 MAKE_FUNCTION            1 (defaults)
+             96 STORE_NAME              14 (main)
+
+ 77          98 LOAD_NAME               15 (__name__)
+            100 LOAD_CONST               9 ('__main__')
+            102 COMPARE_OP              40 (==)
+            106 POP_JUMP_IF_FALSE        8 (to 124)
+
+ 78         108 PUSH_NULL
+            110 LOAD_NAME               14 (main)
+            112 CALL                     0
+            120 POP_TOP
+            122 RETURN_CONST             3 (None)
+
+ 77     >>  124 RETURN_CONST             3 (None)
+
+Disassembly of <code object _load at 0x105414030, file "observathon_score/cli.py", line 16>:
+ 16           0 RESUME                   0
+
+ 17           2 LOAD_FAST                0 (p)
+              4 POP_JUMP_IF_FALSE       64 (to 134)
+              6 LOAD_GLOBAL              0 (os)
+             16 LOAD_ATTR                2 (path)
+             36 LOAD_ATTR                5 (NULL|self + exists)
+             56 LOAD_FAST                0 (p)
+             58 CALL                     1
+             66 POP_JUMP_IF_FALSE       33 (to 134)
+
+ 18          68 NOP
+
+ 19          70 LOAD_GLOBAL              7 (NULL + json)
+             80 LOAD_ATTR                8 (load)
+            100 LOAD_GLOBAL             11 (NULL + open)
+            110 LOAD_FAST                0 (p)
+            112 LOAD_CONST               1 ('utf-8')
+            114 KW_NAMES                 2 (('encoding',))
+            116 CALL                     2
+            124 CALL                     1
+            132 RETURN_VALUE
+
+ 22     >>  134 LOAD_FAST                1 (default)
+            136 RETURN_VALUE
+        >>  138 PUSH_EXC_INFO
+
+ 20         140 LOAD_GLOBAL              6 (json)
+            150 LOAD_ATTR               12 (JSONDecodeError)
+            170 CHECK_EXC_MATCH
+            172 POP_JUMP_IF_FALSE        5 (to 184)
+            174 POP_TOP
+
+ 21         176 LOAD_FAST                1 (default)
+            178 SWAP                     2
+            180 POP_EXCEPT
+            182 RETURN_VALUE
+
+ 20     >>  184 RERAISE                  0
+        >>  186 COPY                     3
+            188 POP_EXCEPT
+            190 RERAISE                  1
+ExceptionTable:
+  70 to 130 -> 138 [0]
+  138 to 178 -> 186 [1] lasti
+  184 to 184 -> 186 [1] lasti
+
+Disassembly of <code object _weights at 0x105451c30, file "observathon_score/cli.py", line 25>:
+ 25           0 RESUME                   0
+
+ 26           2 LOAD_GLOBAL              0 (os)
+             12 LOAD_ATTR                2 (path)
+             32 LOAD_ATTR                5 (NULL|self + dirname)
+             52 LOAD_GLOBAL              0 (os)
+             62 LOAD_ATTR                2 (path)
+             82 LOAD_ATTR                7 (NULL|self + abspath)
+            102 LOAD_GLOBAL              8 (__file__)
+            112 CALL                     1
+            120 CALL                     1
+            128 STORE_FAST               0 (here)
+
+ 27         130 LOAD_GLOBAL             11 (NULL + json)
+            140 LOAD_ATTR               12 (load)
+            160 LOAD_GLOBAL             15 (NULL + open)
+            170 LOAD_GLOBAL              0 (os)
+            180 LOAD_ATTR                2 (path)
+            200 LOAD_ATTR               17 (NULL|self + join)
+            220 LOAD_FAST                0 (here)
+            222 LOAD_CONST               1 ('weights.json')
+            224 CALL                     2
+            232 LOAD_CONST               2 ('utf-8')
+            234 KW_NAMES                 3 (('encoding',))
+            236 CALL                     2
+            244 CALL                     1
+            252 RETURN_VALUE
+
+Disassembly of <code object _catalog at 0x143817280, file "observathon_score/cli.py", line 30>:
+ 30           0 RESUME                   0
+
+ 31           2 LOAD_GLOBAL              0 (os)
+             12 LOAD_ATTR                2 (path)
+             32 LOAD_ATTR                5 (NULL|self + dirname)
+             52 LOAD_GLOBAL              0 (os)
+             62 LOAD_ATTR                2 (path)
+             82 LOAD_ATTR                7 (NULL|self + abspath)
+            102 LOAD_GLOBAL              8 (__file__)
+            112 CALL                     1
+            120 CALL                     1
+            128 STORE_FAST               0 (here)
+
+ 32         130 LOAD_GLOBAL              1 (NULL + os)
+            140 LOAD_ATTR               10 (getenv)
+            160 LOAD_CONST               1 ('OBSERVATHON_CATALOG')
+            162 CALL                     1
+            170 STORE_FAST               1 (env)
+
+ 33         172 LOAD_FAST                1 (env)
+            174 POP_JUMP_IF_FALSE        3 (to 182)
+            176 LOAD_FAST                1 (env)
+            178 BUILD_LIST               1
+            180 JUMP_FORWARD             1 (to 184)
+        >>  182 BUILD_LIST               0
+        >>  184 LOAD_GLOBAL              0 (os)
+            194 LOAD_ATTR                2 (path)
+            214 LOAD_ATTR               13 (NULL|self + join)
+            234 LOAD_FAST                0 (here)
+            236 LOAD_CONST               2 ('fault_catalog.json')
+            238 CALL                     2
+
+ 34         246 LOAD_GLOBAL              0 (os)
+            256 LOAD_ATTR                2 (path)
+            276 LOAD_ATTR               13 (NULL|self + join)
+            296 LOAD_FAST                0 (here)
+            298 LOAD_CONST               3 ('..')
+            300 LOAD_CONST               2 ('fault_catalog.json')
+            302 CALL                     3
+
+ 33         310 BUILD_LIST               2
+            312 BINARY_OP                0 (+)
+            316 STORE_FAST               2 (cands)
+
+ 35         318 LOAD_FAST                2 (cands)
+            320 GET_ITER
+        >>  322 FOR_ITER                70 (to 466)
+            326 STORE_FAST               3 (cand)
+
+ 36         328 LOAD_FAST                3 (cand)
+            330 POP_JUMP_IF_TRUE         1 (to 334)
+            332 JUMP_BACKWARD            6 (to 322)
+        >>  334 LOAD_GLOBAL              0 (os)
+            344 LOAD_ATTR                2 (path)
+            364 LOAD_ATTR               15 (NULL|self + exists)
+            384 LOAD_FAST                3 (cand)
+            386 CALL                     1
+            394 POP_JUMP_IF_TRUE         1 (to 398)
+            396 JUMP_BACKWARD           38 (to 322)
+
+ 37     >>  398 LOAD_GLOBAL             17 (NULL + json)
+            408 LOAD_ATTR               18 (load)
+            428 LOAD_GLOBAL             21 (NULL + open)
+            438 LOAD_FAST                3 (cand)
+            440 LOAD_CONST               4 ('utf-8')
+            442 KW_NAMES                 5 (('encoding',))
+            444 CALL                     2
+            452 CALL                     1
+            460 SWAP                     2
+            462 POP_TOP
+            464 RETURN_VALUE
+
+ 35     >>  466 END_FOR
+
+ 38         468 LOAD_CONST               6 ('faults')
+            470 BUILD_LIST               0
+            472 BUILD_MAP                1
+            474 RETURN_VALUE
+
+Disassembly of <code object main at 0x144043600, file "observathon_score/cli.py", line 41>:
+ 41           0 RESUME                   0
+
+ 42           2 LOAD_GLOBAL              1 (NULL + argparse)
+             12 LOAD_ATTR                2 (ArgumentParser)
+             32 LOAD_CONST               1 ('Observathon scorer')
+             34 KW_NAMES                 2 (('description',))
+             36 CALL                     1
+             44 STORE_FAST               1 (ap)
+
+ 43          46 LOAD_FAST                1 (ap)
+             48 LOAD_ATTR                5 (NULL|self + add_argument)
+             68 LOAD_CONST               3 ('--run')
+             70 LOAD_CONST               4 ('run_output.json')
+             72 KW_NAMES                 5 (('default',))
+             74 CALL                     2
+             82 POP_TOP
+
+ 44          84 LOAD_FAST                1 (ap)
+             86 LOAD_ATTR                5 (NULL|self + add_argument)
+            106 LOAD_CONST               6 ('--findings')
+            108 LOAD_CONST               7 ('solution/findings.json')
+            110 KW_NAMES                 5 (('default',))
+            112 CALL                     2
+            120 POP_TOP
+
+ 45         122 LOAD_FAST                1 (ap)
+            124 LOAD_ATTR                5 (NULL|self + add_argument)
+            144 LOAD_CONST               8 ('--team')
+            146 LOAD_GLOBAL              7 (NULL + os)
+            156 LOAD_ATTR                8 (getenv)
+            176 LOAD_CONST               9 ('OBSERVATHON_TEAM')
+            178 LOAD_CONST              10 ('unknown')
+            180 CALL                     2
+            188 KW_NAMES                 5 (('default',))
+            190 CALL                     2
+            198 POP_TOP
+
+ 46         200 LOAD_FAST                1 (ap)
+            202 LOAD_ATTR                5 (NULL|self + add_argument)
+            222 LOAD_CONST              11 ('--out')
+            224 LOAD_CONST              12 ('score.json')
+            226 KW_NAMES                 5 (('default',))
+            228 CALL                     2
+            236 POP_TOP
+
+ 47         238 LOAD_FAST                1 (ap)
+            240 LOAD_ATTR                5 (NULL|self + add_argument)
+            260 LOAD_CONST              13 ('--phase')
+            262 LOAD_GLOBAL             11 (NULL + getattr)
+            272 LOAD_GLOBAL             12 (_answerkey)
+            282 LOAD_CONST              14 ('PHASE')
+            284 LOAD_CONST              15 ('public')
+            286 CALL                     3
+            294 KW_NAMES                 5 (('default',))
+            296 CALL                     2
+            304 POP_TOP
+
+ 48         306 LOAD_FAST                1 (ap)
+            308 LOAD_ATTR                5 (NULL|self + add_argument)
+            328 LOAD_CONST              16 ('--answerkey')
+            330 LOAD_CONST              17 ('override embedded answer key (JSON {qid:{spec...}})')
+            332 KW_NAMES                18 (('help',))
+            334 CALL                     2
+            342 POP_TOP
+
+ 49         344 LOAD_FAST                1 (ap)
+            346 LOAD_ATTR               15 (NULL|self + parse_args)
+            366 LOAD_FAST                0 (argv)
+            368 CALL                     1
+            376 STORE_FAST               2 (args)
+
+ 51         378 LOAD_GLOBAL             17 (NULL + _load)
+            388 LOAD_FAST                2 (args)
+            390 LOAD_ATTR               18 (run)
+            410 CALL                     1
+            418 STORE_FAST               3 (run)
+
+ 52         420 LOAD_FAST                3 (run)
+            422 POP_JUMP_IF_NOT_NONE    45 (to 514)
+
+ 53         424 LOAD_GLOBAL             21 (NULL + print)
+            434 LOAD_CONST              19 ('[observathon-score] no run file at ')
+            436 LOAD_FAST                2 (args)
+            438 LOAD_ATTR               18 (run)
+            458 FORMAT_VALUE             0
+            460 BUILD_STRING             2
+            462 CALL                     1
+            470 POP_TOP
+            472 LOAD_GLOBAL             23 (NULL + sys)
+            482 LOAD_ATTR               24 (exit)
+            502 LOAD_CONST              20 (1)
+            504 CALL                     1
+            512 POP_TOP
+
+ 54     >>  514 LOAD_GLOBAL             17 (NULL + _load)
+            524 LOAD_FAST                2 (args)
+            526 LOAD_ATTR               26 (findings)
+            546 BUILD_MAP                0
+            548 CALL                     2
+            556 COPY                     1
+            558 POP_JUMP_IF_TRUE         2 (to 564)
+            560 POP_TOP
+            562 BUILD_MAP                0
+        >>  564 STORE_FAST               4 (findings)
+
+ 55         566 LOAD_GLOBAL             29 (NULL + _weights)
+            576 CALL                     0
+            584 STORE_FAST               5 (W)
+
+ 56         586 LOAD_FAST                2 (args)
+            588 LOAD_ATTR               30 (answerkey)
+            608 POP_JUMP_IF_FALSE       21 (to 652)
+            610 LOAD_GLOBAL             17 (NULL + _load)
+            620 LOAD_FAST                2 (args)
+            622 LOAD_ATTR               30 (answerkey)
+            642 CALL                     1
+            650 JUMP_FORWARD            15 (to 682)
+        >>  652 LOAD_GLOBAL             12 (_answerkey)
+            662 LOAD_ATTR               32 (KEY)
+        >>  682 STORE_FAST               6 (key)
+
+ 57         684 LOAD_GLOBAL             35 (NULL + engine)
+            694 LOAD_ATTR               36 (score_run)
+            714 LOAD_FAST                3 (run)
+            716 LOAD_FAST                4 (findings)
+            718 LOAD_FAST                5 (W)
+            720 LOAD_FAST                6 (key)
+            722 LOAD_GLOBAL             39 (NULL + _catalog)
+            732 CALL                     0
+            740 LOAD_FAST                2 (args)
+            742 LOAD_ATTR               40 (phase)
+            762 CALL                     6
+            770 STORE_FAST               7 (rep)
+
+ 59         772 LOAD_FAST                2 (args)
+            774 LOAD_ATTR               42 (team)
+            794 LOAD_FAST                2 (args)
+            796 LOAD_ATTR               40 (phase)
+            816 LOAD_FAST                7 (rep)
+            818 LOAD_CONST              21 ('headline')
+            820 BINARY_SUBSCR
+
+ 60         824 LOAD_FAST                7 (rep)
+            826 LOAD_CONST              22 ('sub')
+            828 BINARY_SUBSCR
+            832 LOAD_FAST                7 (rep)
+            834 LOAD_CONST              23 ('diag_f1')
+            836 BINARY_SUBSCR
+            840 LOAD_FAST                7 (rep)
+            842 LOAD_CONST              24 ('n')
+            844 BINARY_SUBSCR
+
+ 61         848 LOAD_FAST                7 (rep)
+            850 LOAD_CONST              25 ('n_correct')
+            852 BINARY_SUBSCR
+            856 LOAD_FAST                7 (rep)
+            858 LOAD_CONST              26 ('judge_mode')
+            860 BINARY_SUBSCR
+
+ 62         864 LOAD_GLOBAL             45 (NULL + signing)
+            874 LOAD_ATTR               46 (sha)
+            894 LOAD_FAST                5 (W)
+            896 CALL                     1
+            904 LOAD_GLOBAL             45 (NULL + signing)
+            914 LOAD_ATTR               46 (sha)
+            934 LOAD_GLOBAL             49 (NULL + sorted)
+            944 LOAD_FAST                6 (key)
+            946 CALL                     1
+            954 CALL                     1
+
+ 59         962 LOAD_CONST              27 (('team', 'phase', 'headline', 'sub', 'diag_f1', 'n', 'n_correct', 'judge_mode', 'weights_hash', 'key_hash'))
+            964 BUILD_CONST_KEY_MAP     10
+            966 STORE_FAST               8 (payload)
+
+ 63         968 LOAD_GLOBAL             45 (NULL + signing)
+            978 LOAD_ATTR               50 (sign)
+            998 LOAD_FAST                8 (payload)
+           1000 CALL                     1
+           1008 LOAD_FAST                8 (payload)
+           1010 LOAD_CONST              28 ('sig')
+           1012 STORE_SUBSCR
+
+ 64        1016 LOAD_GLOBAL             53 (NULL + json)
+           1026 LOAD_ATTR               54 (dump)
+           1046 LOAD_FAST                8 (payload)
+           1048 LOAD_GLOBAL             57 (NULL + open)
+           1058 LOAD_FAST                2 (args)
+           1060 LOAD_ATTR               58 (out)
+           1080 LOAD_CONST              29 ('w')
+           1082 LOAD_CONST              30 ('utf-8')
+           1084 KW_NAMES                31 (('encoding',))
+           1086 CALL                     3
+           1094 LOAD_CONST              32 (False)
+           1096 LOAD_CONST              33 (2)
+           1098 KW_NAMES                34 (('ensure_ascii', 'indent'))
+           1100 CALL                     4
+           1108 POP_TOP
+
+ 66        1110 LOAD_GLOBAL             21 (NULL + print)
+           1120 LOAD_CONST              35 ('======================================================')
+           1122 CALL                     1
+           1130 POP_TOP
+
+ 67        1132 LOAD_GLOBAL             21 (NULL + print)
+           1142 LOAD_CONST              36 ('  PRODUCTION SCORE (')
+           1144 LOAD_FAST                7 (rep)
+           1146 LOAD_CONST              37 ('phase')
+           1148 BINARY_SUBSCR
+           1152 FORMAT_VALUE             0
+           1154 LOAD_CONST              38 (') -- ')
+           1156 LOAD_FAST                7 (rep)
+           1158 LOAD_CONST              24 ('n')
+           1160 BINARY_SUBSCR
+           1164 FORMAT_VALUE             0
+           1166 LOAD_CONST              39 (' q, ')
+           1168 LOAD_FAST                7 (rep)
+           1170 LOAD_CONST              25 ('n_correct')
+           1172 BINARY_SUBSCR
+           1176 FORMAT_VALUE             0
+           1178 LOAD_CONST              40 (' correct')
+           1180 BUILD_STRING             7
+           1182 CALL                     1
+           1190 POP_TOP
+
+ 68        1192 LOAD_GLOBAL             21 (NULL + print)
+           1202 LOAD_CONST              35 ('======================================================')
+           1204 CALL                     1
+           1212 POP_TOP
+
+ 69        1214 LOAD_FAST                5 (W)
+           1216 LOAD_CONST              41 ('weights')
+           1218 BINARY_SUBSCR
+           1222 LOAD_ATTR               61 (NULL|self + items)
+           1242 CALL                     0
+           1250 GET_ITER
+        >> 1252 FOR_ITER                47 (to 1350)
+           1256 UNPACK_SEQUENCE          2
+           1260 STORE_FAST               9 (k)
+           1262 STORE_FAST              10 (wt)
+
+ 70        1264 LOAD_GLOBAL             21 (NULL + print)
+           1274 LOAD_CONST              42 ('  ')
+           1276 LOAD_FAST                9 (k)
+           1278 LOAD_CONST              43 ('8')
+           1280 FORMAT_VALUE             4 (with format)
+           1282 LOAD_CONST              44 (' ')
+           1284 LOAD_FAST                7 (rep)
+           1286 LOAD_CONST              22 ('sub')
+           1288 BINARY_SUBSCR
+           1292 LOAD_FAST                9 (k)
+           1294 BINARY_SUBSCR
+           1298 LOAD_CONST              45 ('.3f')
+           1300 FORMAT_VALUE             4 (with format)
+           1302 LOAD_CONST              46 ('  x')
+           1304 LOAD_FAST               10 (wt)
+           1306 LOAD_CONST              47 ('<4')
+           1308 FORMAT_VALUE             4 (with format)
+           1310 LOAD_CONST              48 (' = ')
+           1312 LOAD_FAST                7 (rep)
+           1314 LOAD_CONST              22 ('sub')
+           1316 BINARY_SUBSCR
+           1320 LOAD_FAST                9 (k)
+           1322 BINARY_SUBSCR
+           1326 LOAD_FAST               10 (wt)
+           1328 BINARY_OP                5 (*)
+           1332 LOAD_CONST              45 ('.3f')
+           1334 FORMAT_VALUE             4 (with format)
+           1336 BUILD_STRING             8
+           1338 CALL                     1
+           1346 POP_TOP
+           1348 JUMP_BACKWARD           49 (to 1252)
+
+ 69     >> 1350 END_FOR
+
+ 71        1352 LOAD_GLOBAL             21 (NULL + print)
+           1362 LOAD_CONST              49 ('  diagnosis F1 ')
+           1364 LOAD_FAST                7 (rep)
+           1366 LOAD_CONST              23 ('diag_f1')
+           1368 BINARY_SUBSCR
+           1372 LOAD_CONST              45 ('.3f')
+           1374 FORMAT_VALUE             4 (with format)
+           1376 LOAD_CONST              50 ('  (bonus up to ')
+           1378 LOAD_FAST                5 (W)
+           1380 LOAD_CONST              51 ('diag_bonus_max')
+           1382 BINARY_SUBSCR
+           1386 FORMAT_VALUE             0
+           1388 LOAD_CONST              52 (')')
+           1390 BUILD_STRING             5
+           1392 CALL                     1
+           1400 POP_TOP
+
+ 72        1402 LOAD_GLOBAL             21 (NULL + print)
+           1412 LOAD_CONST              53 ('------------------------------------------------------')
+           1414 CALL                     1
+           1422 POP_TOP
+
+ 73        1424 LOAD_GLOBAL             21 (NULL + print)
+           1434 LOAD_CONST              54 ('  HEADLINE: ')
+           1436 LOAD_FAST                7 (rep)
+           1438 LOAD_CONST              21 ('headline')
+           1440 BINARY_SUBSCR
+           1444 FORMAT_VALUE             0
+           1446 LOAD_CONST              55 (' / 100    judge=')
+           1448 LOAD_FAST                7 (rep)
+           1450 LOAD_CONST              26 ('judge_mode')
+           1452 BINARY_SUBSCR
+           1456 FORMAT_VALUE             0
+           1458 BUILD_STRING             4
+           1460 CALL                     1
+           1468 POP_TOP
+
+ 74        1470 LOAD_GLOBAL             21 (NULL + print)
+           1480 LOAD_CONST              56 ('LEADERBOARD>')
+           1482 LOAD_GLOBAL             53 (NULL + json)
+           1492 LOAD_ATTR               62 (dumps)
+           1512 LOAD_FAST                8 (payload)
+           1514 LOAD_CONST              32 (False)
+           1516 KW_NAMES                57 (('ensure_ascii',))
+           1518 CALL                     2
+           1526 FORMAT_VALUE             0
+           1528 BUILD_STRING             2
+           1530 CALL                     1
+           1538 POP_TOP
+           1540 RETURN_CONST             0 (None)

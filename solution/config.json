@@ -1,6 +1,6 @@
 {
   "provider": "openai",
-  "model": "qwen/qwen3.5-397b-a17b",
+  "model": "deepseek-v4-flash",
   "model_price_tier": "economy",
   "max_steps": 5,
   "loop_guard": true,

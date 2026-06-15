@@ -161,4 +161,4 @@ def analyze_mismatches(run_path, answerkey_path):
         print(f"  Agent Answer: {m['answer'].strip()}")
         print("-" * 60)
 
-analyze_mismatches("run_output_private_fixed.json", "private_answerkey.json")
+analyze_mismatches("run_output_private_v2.json", "private_answerkey.json")

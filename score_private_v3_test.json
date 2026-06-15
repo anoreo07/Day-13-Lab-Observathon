@@ -1,0 +1,21 @@
+{
+  "team": "Antigravity-Team",
+  "phase": "private",
+  "headline": 100.0,
+  "sub": {
+    "correct": 0.9875,
+    "quality": 0.9925,
+    "error": 0.9875,
+    "latency": 0.0,
+    "cost": 0.0,
+    "drift": 0.7238,
+    "prompt": 0.9462
+  },
+  "diag_f1": 0.952,
+  "n": 80,
+  "n_correct": 79,
+  "judge_mode": "offline",
+  "weights_hash": "e81a8ed58d93",
+  "key_hash": "7e3905b75db0",
+  "sig": "2b5f4697d6bf0456684fd3aabb48836c8eb06a67c19a82b31ddd3a8bca849372"
+}

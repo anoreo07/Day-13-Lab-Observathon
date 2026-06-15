@@ -182,14 +182,16 @@ def _post_process_result(result, question):
             else:
                 shipping_cost = None
 
-    if not found or not in_stock:
-        if "khong" not in result["answer"].lower():
-            result["answer"] = "San pham khong co hang"
+    if not found:
+        result["answer"] = "San pham khong tim thay trong he thong"
+        return result
+
+    if not in_stock:
+        result["answer"] = "San pham da het hang"
         return result
         
     if has_shipping and shipping_error is not None:
-        if "khong" not in result["answer"].lower():
-            result["answer"] = "Khong giao hang den khu vuc nay"
+        result["answer"] = "Khong giao hang den khu vuc nay"
         return result
 
     # Only recalculate total if this order requires shipping/total cost
